@@ -1,0 +1,8 @@
+.pessoa-table a{
+  color: #94B49F;
+  text-decoration: none;
+}
+
+.pessoa-table a:hover{
+  color: #2C3333;
+}
