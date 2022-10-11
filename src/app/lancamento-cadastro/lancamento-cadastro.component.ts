@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { NgForm } from '@angular/forms';
 
 @Component({
   selector: 'app-lancamento-cadastro',
@@ -20,7 +21,8 @@ pessoas = [{label:'João da Silva', value: 1},
 {label:'Sebastiao Souza', value: 2},
 {label:'Maria Abadia', value: 3},
 ];
-value6: number = 115744;
+
+
   constructor() { }
 
   ngOnInit(): void {

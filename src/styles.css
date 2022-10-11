@@ -58,3 +58,11 @@ label {
     margin: 1px;
   }
 }
+
+form .p-button {
+  margin-right: .25em;
+}
+
+.grid button {
+  margin: 10px;
+}

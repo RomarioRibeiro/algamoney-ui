@@ -1,6 +1,6 @@
 <div class="container">
 
-  <form >
+  <form #lancamento="ngForm" >
     <div class="p-grid">
       <div class="p-col-12">
         <h1>Novo Lançamento</h1>
@@ -12,29 +12,35 @@
 
       <div class="p-col-6 p-md-3 p-fluid">
         <label >Vencimento</label>
-        <p-calendar  dateFormat="dd/mm/yy"></p-calendar>
-      </div>
+        <p-calendar  dateFormat="dd/mm/yy" name="vencimento" ngModel #vencimento="ngModel" [required]="true" ></p-calendar>
 
+        <app-message [control]="vencimento" erro="required" text="Informe uma data válida"></app-message>
+      </div>
       <div class="p-col-6 p-md-3 p-fluid">
         <label >{{ tipo.value === 'RECEITA' ? 'Recebimento' : 'Pagamento' }}</label>
         <input pInputText type="text">
       </div>
 
+
       <div class="p-col-12 p-md-9 p-fluid">
-        <label >Descrição</label>
-        <input pInputText type="text">
+        <label >Descrição {{descricao.errors | json}} </label>
+        <input pInputText type="text" name="descricao" ngModel #descricao="ngModel" required minlength="5">
+
+        <app-message [control]="descricao" erro="required" text="Informe uma Descrição."></app-message>
+        <app-message [control]="descricao" erro="minlength" text="O Minimo de {{ descricao.errors?.['minlength']?.requiredLength}} Caracteris."></app-message>
+
       </div>
 
       <div class="p-col-12  p-md-3 p-fluid">
         <label for="locale-us" >Valor</label>
-        <p-inputNumber  inputId="locale-us" mode="decimal" locale="en-US" placeholder="0,00" [minFractionDigits]="2">
+        <p-inputNumber  inputId="locale-us" mode="decimal" locale="en-US" placeholder="0,00" [minFractionDigits]="2" name="valor" ngModel #valor="ngModel" [required]="true">
         </p-inputNumber>
 
       </div>
 
       <div class="p-col-12 p-md-6 p-fluid">
         <label >Categoria</label>
-        <p-dropdown [options]="categoria"  placeholder="Selecione"></p-dropdown>
+        <p-dropdown [options]="categoria"  placeholder="Selecione"  [required]="true"></p-dropdown>
       </div>
 
       <div class="p-col-12 p-md-6 p-fluid">
@@ -49,7 +55,7 @@
     </div>
 
     <div class="p-col-12">
-      <button pButton type="submit" label="Salvar"></button>
+      <button pButton type="submit" label="Salvar" [disabled]="!lancamento.valid"></button>
       <button pButton type="button" label="Novo" class="p-button-info"></button>
       <a href="javascript:;">Voltar para a pesquisa</a>
     </div>
